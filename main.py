@@ -9,7 +9,7 @@ WIDTH: int = 700
 HEIGHT: int = 500
 
 
-def run_simulation(sorter: sorters.Sorter) -> None:
+def run_visualization(sorter: sorters.Sorter) -> None:
     '''
     Run a real-time sorting visualization for sorting algorithm.
 
@@ -47,7 +47,7 @@ def main() -> int:
 
     n: int = 50
     nums: list[int] = [random.randint(11, 200) for _ in range(n)]
-    run_simulation(sorters.FunnySort(nums))
+    run_visualization(sorters.FunnySort(nums))
 
     return 0
 
