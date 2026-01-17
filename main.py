@@ -5,7 +5,7 @@ import sys
 import sorters
 
 
-WIDTH: int = 700
+WIDTH: int = 1200
 HEIGHT: int = 500
 
 
@@ -18,7 +18,6 @@ def run_visualization(sorter: sorters.Sorter) -> None:
     `transition_render()`.
     '''
 
-    pygame.init()
     window: pygame.Surface = pygame.display.set_mode(
         size=(WIDTH, HEIGHT),
         flags=pygame.RESIZABLE
@@ -26,28 +25,35 @@ def run_visualization(sorter: sorters.Sorter) -> None:
     clock = pygame.time.Clock()
 
     window.fill('Black')
+    # pygame.display.update()
     sorter.init_render(window) #This
     
     while "True and REAL":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                sys.exit(0)
+                return
 
         keystate = pygame.key.get_pressed()
         modstate: int = pygame.key.get_mods()
 
         if keystate[pygame.K_w] and (modstate & pygame.KMOD_CTRL):
-            sys.exit(0)
+            return
 
         sorter.transition_render(window) #This
-        clock.tick(60)
+        clock.tick(300)
 
 
 def main() -> int:
 
-    n: int = 50
+    pygame.init()
+
+    n: int = WIDTH // 2
     nums: list[int] = [random.randint(11, 200) for _ in range(n)]
+
     run_visualization(sorters.FunnySort(nums))
+    run_visualization(sorters.MergeSort(nums))
+
+    pygame.quit()
 
     return 0
 

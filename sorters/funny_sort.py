@@ -42,7 +42,7 @@ class FunnySort(Generic[T]):
         '''
         
         for i in range(self.n):
-            self.render_point(window, i, BASE_COLOR)
+            self.point_render(window, i, BASE_COLOR)
 
         pygame.display.update()
 
@@ -65,7 +65,7 @@ class FunnySort(Generic[T]):
             yield i, -1, SORTED_COLOR
 
 
-    def render_point(
+    def point_render(
         self,
         window: pygame.Surface,
         pos: int,
@@ -112,9 +112,9 @@ class FunnySort(Generic[T]):
 
         try:
             u, v, color = next(self.gen)
-            self.render_point(window, u, color)
+            self.point_render(window, u, color)
             if v != -1:
-                self.render_point(window, v, color)
+                self.point_render(window, v, color)
         except:
             self.gen = None
 
